@@ -1,43 +1,57 @@
-import { Badge } from "../../../components/ui/badge";
+import { VidhIntelligenceSummary } from "./VidhIntelligenceSummary";
 
 export const StudentHeader = (): JSX.Element => {
     return (
-        <div className="w-full bg-white rounded-lg border border-gray-100 p-6 flex flex-col md:flex-row items-center gap-6 shadow-sm">
-            <div className="relative">
-                <img
-                    className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover border-4 border-vidh-bg"
-                    src="https://images.unsplash.com/photo-1544502062-f82887f03d1c?q=80&w=2576&auto=format&fit=crop"
-                    alt="Student Profile"
-                />
-                <Badge className="absolute bottom-0 right-0 bg-green-500 hover:bg-green-600 border-2 border-white w-6 h-6 p-0 rounded-full" />
-            </div>
+        <div className="w-full bg-white rounded-lg border border-gray-100 p-6 shadow-sm">
+            <div className="flex flex-col lg:flex-row gap-6 lg:gap-0">
 
-            <div className="flex flex-col items-center md:items-start gap-4 flex-1 w-full text-center md:text-left">
-                <div>
-                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900 font-['DM_Sans']">
-                        Sarah Johnson
-                    </h2>
-                    <p className="text-gray-500 font-medium">Class X - Section A</p>
+                {/* Left Side: Profile & Details */}
+                <div className="flex-1 flex flex-col gap-6 lg:pr-8">
+                    <div className="flex flex-col sm:flex-row items-center sm:items-center gap-6 text-center sm:text-left">
+                        <div className="relative shrink-0">
+                            <img
+                                className="w-24 h-24 md:w-28 md:h-28 rounded-full object-cover border-4 border-vidh-bg"
+                                src="https://images.unsplash.com/photo-1628258334105-2a0b3d6efee1?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                alt="Student Profile"
+                            />
+                        </div>
+                        <div className="flex flex-col justify-center">
+                            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 font-['DM_Sans'] tracking-tight">
+                                Sarah Johnson
+                            </h2>
+                            <p className="text-gray-500 font-medium mt-1 text-base">Class X - Section A</p>
+                        </div>
+                    </div>
+
+                    {/* Stats Grid - Cleaner layout without wrapper */}
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-x-8 gap-y-4 pt-2 border-t border-gray-50 mt-1">
+                        <div>
+                            <span className="block text-sm text-gray-400 font-semibold uppercase tracking-wider mb-1">Roll No</span>
+                            <span className="text-base font-bold text-gray-900">24</span>
+                        </div>
+                        <div>
+                            <span className="block text-sm text-gray-400 font-semibold uppercase tracking-wider mb-1">Gender</span>
+                            <span className="text-base font-bold text-gray-900">Female</span>
+                        </div>
+                        <div>
+                            <span className="block text-sm text-gray-400 font-semibold uppercase tracking-wider mb-1">Phone</span>
+                            <span className="text-base font-bold text-gray-900">+91 98765 43210</span>
+                        </div>
+                        <div>
+                            <span className="block text-sm text-gray-400 font-semibold uppercase tracking-wider mb-1">DOB</span>
+                            <span className="text-base font-bold text-gray-900">12 Aug 2008</span>
+                        </div>
+                    </div>
                 </div>
 
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full bg-vidh-bg/50 p-5 rounded-lg">
-                    <div className="flex flex-col gap-1">
-                        <span className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Roll No</span>
-                        <span className="text-gray-900 font-bold">24</span>
-                    </div>
-                    <div className="flex flex-col gap-1">
-                        <span className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Gender</span>
-                        <span className="text-gray-900 font-bold">Female</span>
-                    </div>
-                    <div className="flex flex-col gap-1">
-                        <span className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Phone</span>
-                        <span className="text-gray-900 font-bold">+91 98765 43210</span>
-                    </div>
-                    <div className="flex flex-col gap-1">
-                        <span className="text-xs text-gray-500 uppercase tracking-wider font-semibold">DOB</span>
-                        <span className="text-gray-900 font-bold">12 Aug 2008</span>
-                    </div>
+                {/* Divider for Desktop */}
+                <div className="hidden lg:block w-px bg-gray-100 mx-8 self-stretch"></div>
+
+                {/* Right Side: Vidh Summary */}
+                <div className="lg:w-[420px] shrink-0 border-t lg:border-t-0 border-gray-100 pt-6 lg:pt-0">
+                    <VidhIntelligenceSummary />
                 </div>
+
             </div>
         </div>
     );

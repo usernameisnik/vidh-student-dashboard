@@ -1,111 +1,101 @@
-import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
-import { ChevronDown } from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Legend } from 'recharts';
 
 const attendanceData = [
-    { month: 'Jun', student: 90, avg: 85 },
-    { month: 'Jul', student: 85, avg: 82 },
-    { month: 'Aug', student: 95, avg: 88 },
-    { month: 'Sep', student: 88, avg: 84 },
-    { month: 'Oct', student: 92, avg: 86 },
-    { month: 'Nov', student: 96, avg: 87 },
+    { month: 'Jul', student: 90, avg: 92 },
+    { month: 'Aug', student: 98, avg: 95 },
+    { month: 'Sep', student: 98, avg: 95 },
+    { month: 'Oct', student: 98, avg: 95 },
+    { month: 'Nov', student: 92, avg: 90 },
+    { month: 'Dec', student: 96, avg: 94 },
+    { month: 'Jan', student: 55, avg: 85 },
+    { month: 'Feb', student: 95, avg: 92 },
 ];
 
 export const AttendanceCard = (): JSX.Element => {
     return (
-        <div className="w-full bg-white rounded-lg border border-gray-100 p-6 flex flex-col gap-6 shadow-sm h-full">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-                <h3 className="text-xl font-bold text-gray-900">Attendance Overview</h3>
-                <div className="relative">
-                    <select className="text-sm border border-gray-200 bg-white text-gray-700 rounded-lg pl-3 pr-9 py-2.5 cursor-pointer outline-none focus:ring-2 focus:ring-vidh-orange focus:border-vidh-orange transition-all appearance-none">
-                        <option>This Academic Year</option>
-                        <option>Last Academic Year</option>
-                    </select>
-                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
+        <div className="flex flex-col h-full bg-white rounded-lg border border-gray-100 p-6 shadow-sm">
+            {/* Header Section */}
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                <div>
+                    <h3 className="text-lg font-bold text-gray-900 tracking-tight">Attendance Overview</h3>
+                    <p className="text-sm text-gray-500 mt-0.5">Overall + class average, month-wise trend.</p>
+                </div>
+
+                {/* Big Badge / Metric */}
+                <div className="flex items-center gap-3 bg-gray-50 px-4 py-2 rounded-lg border border-gray-100">
+                    <span className="text-sm font-semibold text-gray-600">Overall:</span>
+                    <span className="text-2xl font-bold text-primary leading-none">94.0%</span>
+                    <span className="text-xs text-gray-500 self-end mb-0.5">Class avg: 94.8%</span>
                 </div>
             </div>
 
-            <div className="grid grid-cols-3 gap-3 sm:gap-4">
-                <div className="flex flex-col bg-green-50 p-3 sm:p-4 rounded-lg border border-green-200">
-                    <span className="text-xs text-green-700 font-semibold mb-1.5">Present</span>
-                    <span className="text-lg sm:text-xl font-bold text-green-800">142</span>
-                    <span className="text-xs text-green-600 mt-0.5">Days</span>
-                </div>
-                <div className="flex flex-col bg-red-50 p-3 sm:p-4 rounded-lg border border-red-200">
-                    <span className="text-xs text-red-700 font-semibold mb-1.5">Absent</span>
-                    <span className="text-lg sm:text-xl font-bold text-red-800">8</span>
-                    <span className="text-xs text-red-600 mt-0.5">Days</span>
-                </div>
-                <div className="flex flex-col bg-orange-50 p-3 sm:p-4 rounded-lg border border-orange-200">
-                    <span className="text-xs text-orange-700 font-semibold mb-1.5">Rate</span>
-                    <span className="text-lg sm:text-xl font-bold text-orange-800">94.6%</span>
-                    <span className="text-xs text-orange-600 mt-0.5">Overall</span>
-                </div>
+            {/* Breakdown & Stats */}
+            <div className="flex flex-wrap gap-x-6 gap-y-2 mb-6 p-4 bg-gray-50/50 rounded-lg border border-gray-100/50">
+                <span className="text-xs font-bold text-completionGreen uppercase tracking-wide flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-completionGreen"></span>
+                    Present: 22
+                </span>
+                <span className="text-xs font-bold text-secondary uppercase tracking-wide flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-secondary"></span>
+                    Partially Present: 3
+                </span>
+                <span className="text-xs font-bold text-incompletionRed uppercase tracking-wide flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-incompletionRed"></span>
+                    Absent: 0
+                </span>
             </div>
 
-            <div className="flex-1 min-h-[280px] w-full">
+            {/* Chart Area */}
+            <div className="flex-1 w-full min-h-[280px]">
                 <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart data={attendanceData} margin={{ top: 10, right: 10, left: 0, bottom: 5 }}>
-                        <defs>
-                            <linearGradient id="colorStudent" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="5%" stopColor="#E56300" stopOpacity={0.3} />
-                                <stop offset="95%" stopColor="#E56300" stopOpacity={0.05} />
-                            </linearGradient>
-                        </defs>
-                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e5e7eb" />
+                    <BarChart data={attendanceData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }} barMarkGap={5}>
+                        <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f3f4f6" />
                         <XAxis
                             dataKey="month"
                             axisLine={false}
                             tickLine={false}
-                            tick={{ fill: '#6b7280', fontSize: 13, fontWeight: 500 }}
-                            dy={8}
+                            tick={{ fill: '#6b7280', fontSize: 12 }}
+                            dy={10}
                         />
                         <YAxis
                             axisLine={false}
                             tickLine={false}
                             tick={{ fill: '#9ca3af', fontSize: 12 }}
-                            domain={[70, 100]}
-                            ticks={[70, 80, 90, 100]}
-                            dx={-5}
+                            domain={[0, 100]}
+                            ticks={[0, 25, 50, 75, 100]}
                         />
                         <Tooltip
+                            cursor={{ fill: '#f9fafb' }}
                             contentStyle={{
                                 borderRadius: '8px',
                                 border: 'none',
                                 boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-                                padding: '8px 12px'
+                                fontSize: '12px'
                             }}
                         />
-                        <Area
-                            type="monotone"
+                        <Legend iconType="circle" wrapperStyle={{ paddingTop: '20px', color: '#374151' }} />
+                        <Bar
                             dataKey="student"
-                            stroke="#E56300"
-                            strokeWidth={3}
-                            fillOpacity={1}
-                            fill="url(#colorStudent)"
-                            name="My Attendance"
+                            fill="#004c6d"
+                            name="Student"
+                            radius={[4, 4, 0, 0]}
+                            barSize={24}
                         />
-                        <Area
-                            type="monotone"
+                        <Bar
                             dataKey="avg"
-                            stroke="#9ca3af"
-                            strokeDasharray="5 5"
-                            strokeWidth={2}
-                            fill="none"
+                            fill="#E5E7EB"
                             name="Class Avg"
+                            radius={[4, 4, 0, 0]}
+                            barSize={24}
                         />
-                    </AreaChart>
+                    </BarChart>
                 </ResponsiveContainer>
             </div>
 
-            <div className="flex items-center justify-center gap-6 text-sm pt-2 border-t border-gray-100">
-                <div className="flex items-center gap-2">
-                    <span className="w-3 h-3 rounded-full bg-vidh-orange"></span>
-                    <span className="text-gray-700 font-medium">My Attendance</span>
-                </div>
-                <div className="flex items-center gap-2">
-                    <span className="w-3 h-3 rounded-full bg-gray-400"></span>
-                    <span className="text-gray-700 font-medium">Class Average</span>
-                </div>
+            <div className="mt-4 pt-4 border-t border-gray-50">
+                <p className="text-xs text-gray-400">
+                    Month-wise attendance is computed from saved class attendance entries.
+                </p>
             </div>
         </div>
     );

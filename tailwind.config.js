@@ -46,6 +46,8 @@ module.exports = {
           yellow: "#FFB44D",
           bg: "#FFF7F1",
         },
+        completionGreen: "hsl(var(--completion-green))",
+        incompletionRed: "hsl(var(--incompletion-red))",
       },
       borderRadius: {
         lg: "var(--radius)",

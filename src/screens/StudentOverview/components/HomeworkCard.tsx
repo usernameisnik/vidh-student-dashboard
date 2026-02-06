@@ -1,80 +1,85 @@
-import { TrendingUp } from 'lucide-react';
 
-const monthlyProgress = [
-    { month: 'Jun', completed: 85 },
-    { month: 'Jul', completed: 92 },
-    { month: 'Aug', completed: 88 },
-    { month: 'Sep', completed: 96 },
-    { month: 'Oct', completed: 90 },
-    { month: 'Nov', completed: 96 },
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Legend } from 'recharts';
+
+const homeworkData = [
+    { month: 'Jul', student: 28, classAvg: 25 },
+    { month: 'Sep', student: 58, classAvg: 62 },
+    { month: 'Nov', student: 35, classAvg: 48 },
+    { month: 'Dec', student: 48, classAvg: 40 },
+    { month: 'Feb', student: 22, classAvg: 2 },
 ];
 
 export const HomeworkCard = (): JSX.Element => {
-    const currentRate = 96;
-    const previousRate = 93.6;
-    const change = currentRate - previousRate;
-    const changePercent = ((change / previousRate) * 100).toFixed(1);
-
     return (
-        <div className="w-full bg-white rounded-lg border border-gray-100 p-6 flex flex-col gap-6 shadow-sm h-full">
-            <div className="flex flex-col gap-2">
-                <h3 className="text-xl font-bold text-gray-900">Homework</h3>
-                <p className="text-sm text-gray-500 font-medium">Completion Rate</p>
-            </div>
-
-            <div className="flex flex-col gap-3">
-                <div className="flex items-baseline gap-3">
-                    <h2 className="text-6xl font-bold text-vidh-orange tracking-tight">{currentRate}%</h2>
-                    <div className="flex items-center gap-1.5 bg-green-50 px-2.5 py-1.5 rounded-lg border border-green-200">
-                        <TrendingUp className="w-4 h-4 text-green-600" />
-                        <span className="text-sm text-green-700 font-bold">+{changePercent}%</span>
-                    </div>
+        <div className="flex flex-col h-full bg-white rounded-lg border border-gray-100 p-6 shadow-sm">
+            {/* Header Section */}
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                <div>
+                    <h3 className="text-lg font-bold text-gray-900 tracking-tight">Homework Analysis</h3>
+                    <p className="text-sm text-gray-500 mt-0.5">Overall student vs class average, month-wise.</p>
                 </div>
-                <p className="text-sm text-gray-500">vs last month ({previousRate}%)</p>
-            </div>
 
-            {/* Monthly Progress Visualization */}
-            <div className="flex flex-col gap-3 mt-2">
-                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Monthly Trend</p>
-                <div className="flex items-end justify-between gap-1.5 h-24">
-                    {monthlyProgress.map((item, index) => {
-                        const height = (item.completed / 100) * 100;
-                        const isLatest = index === monthlyProgress.length - 1;
-                        return (
-                            <div key={item.month} className="flex flex-col items-center gap-2 flex-1">
-                                <div className="w-full bg-gray-100 rounded-t-md overflow-hidden flex items-end" style={{ height: '80px' }}>
-                                    <div
-                                        className={`w-full rounded-t-md transition-all ${isLatest ? 'bg-vidh-orange' : 'bg-orange-300'
-                                            }`}
-                                        style={{ height: `${height}%` }}
-                                    />
-                                </div>
-                                <span className={`text-xs font-medium ${isLatest ? 'text-gray-900' : 'text-gray-500'
-                                    }`}>
-                                    {item.month}
-                                </span>
-                            </div>
-                        );
-                    })}
+                {/* Big Badge / Metric */}
+                <div className="flex items-center gap-3 bg-gray-50 px-4 py-2 rounded-lg border border-gray-100">
+                    <span className="text-sm font-semibold text-gray-600">Overall:</span>
+                    <span className="text-2xl font-bold text-primary leading-none">35.8%</span>
+                    <span className="text-xs text-gray-500 self-end mb-0.5">Class avg: 39.8%</span>
                 </div>
             </div>
 
-            {/* Completion Blocks */}
-            <div className="flex flex-col gap-2 pt-4 border-t border-gray-100">
-                <div className="flex items-center justify-between text-xs">
-                    <span className="text-gray-500 font-medium">Last 20 Assignments</span>
-                    <span className="text-gray-700 font-semibold">18/20 Completed</span>
-                </div>
-                <div className="flex gap-1">
-                    {[...Array(20)].map((_, i) => (
-                        <div
-                            key={i}
-                            className={`flex-1 h-2 rounded-sm transition-all ${i < 18 ? 'bg-vidh-orange' : 'bg-gray-200'
-                                }`}
-                            title={i < 18 ? 'Completed' : 'Pending'}
+            {/* Chart Area */}
+            <div className="flex-1 w-full min-h-[280px]">
+                <ResponsiveContainer width="100%" height="100%">
+                    <BarChart data={homeworkData} barSize={40} barGap={0} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                        <CartesianGrid strokeDasharray="3 3" vertical={true} stroke="#f3f4f6" />
+                        <XAxis
+                            dataKey="month"
+                            axisLine={false}
+                            tickLine={false}
+                            tick={{ fill: '#6b7280', fontSize: 12 }}
+                            dy={10}
                         />
-                    ))}
-                </div>
+                        <YAxis
+                            axisLine={false}
+                            tickLine={false}
+                            tick={{ fill: '#9ca3af', fontSize: 12 }}
+                            domain={[0, 100]}
+                            ticks={[0, 25, 50, 75, 100]}
+                        />
+                        <Tooltip
+                            cursor={{ fill: '#f9fafb' }}
+                            contentStyle={{
+                                borderRadius: '8px',
+                                border: 'none',
+                                boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+                                fontSize: '12px'
+                            }}
+                        />
+                        <Legend
+                            iconType="square"
+                            iconSize={8}
+                            wrapperStyle={{ fontSize: '12px', paddingTop: '10px', color: '#374151' }}
+                        />
+                        <Bar
+                            dataKey="classAvg"
+                            name="Class average"
+                            fill="#E5E7EB"
+                            radius={[4, 4, 0, 0]}
+                        />
+                        <Bar
+                            dataKey="student"
+                            name="Student"
+                            fill="#004c6d"
+                            radius={[4, 4, 0, 0]}
+                        />
+                    </BarChart>
+                </ResponsiveContainer>
+            </div>
+
+            <div className="mt-4 pt-4 border-t border-gray-50">
+                <p className="text-xs text-gray-400">
+                    Based on homework results marks saved for the class.
+                </p>
             </div>
         </div>
     );
