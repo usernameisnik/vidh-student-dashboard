@@ -6,7 +6,7 @@ export const VidhIntelligenceSummary = (): JSX.Element => {
 
     // Simple status helper
     const getStatus = (val: number) => {
-        if (val >= 80) return { text: 'Excellent', color: 'text-completionGreen' };
+        if (val >= 80) return { text: 'Excellent', color: 'text-green-600' };
         if (val >= 60) return { text: 'Good', color: 'text-secondary' };
         return { text: 'Average', color: 'text-incompletionRed' };
     };
@@ -30,7 +30,7 @@ export const VidhIntelligenceSummary = (): JSX.Element => {
                 <div className="flex flex-col gap-1.5 text-sm flex-1">
                     <div className="flex justify-between items-center">
                         <span className="text-gray-500 font-medium">Attendance</span>
-                        <span className="text-completionGreen font-bold text-right">+98%</span>
+                        <span className="text-primary font-bold text-right">98%</span>
                     </div>
                     <div className="flex justify-between items-center">
                         <span className="text-gray-500 font-medium">Homework</span>
