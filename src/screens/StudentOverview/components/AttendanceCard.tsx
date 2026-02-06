@@ -31,16 +31,16 @@ export const AttendanceCard = (): JSX.Element => {
 
             {/* Breakdown & Stats */}
             <div className="flex flex-wrap gap-x-6 gap-y-2 mb-6 p-4 bg-gray-50/50 rounded-lg border border-gray-100/50">
-                <span className="text-xs font-bold text-completionGreen uppercase tracking-wide flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-completionGreen"></span>
+                <span className="text-xs font-bold text-green-700 uppercase tracking-wide flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-green-700"></span>
                     Present: 22
                 </span>
-                <span className="text-xs font-bold text-secondary uppercase tracking-wide flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-secondary"></span>
+                <span className="text-xs font-bold text-yellow-600 uppercase tracking-wide flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-yellow-600"></span>
                     Partially Present: 3
                 </span>
-                <span className="text-xs font-bold text-incompletionRed uppercase tracking-wide flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-incompletionRed"></span>
+                <span className="text-xs font-bold text-red-700 uppercase tracking-wide flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-red-700"></span>
                     Absent: 0
                 </span>
             </div>

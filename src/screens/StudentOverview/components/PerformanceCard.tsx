@@ -62,12 +62,18 @@ export const PerformanceCard = (): JSX.Element => {
                     </div>
 
                     <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
-                        {rankData.map((item, index) => (
-                            <div key={index} className="flex items-center gap-3 bg-white border border-gray-200 rounded-md px-3 py-2 min-w-[160px] shadow-sm">
-                                <span className="text-xs font-bold text-primary bg-blue-50 px-2 py-0.5 rounded uppercase">RANK {item.rank}</span>
-                                <span className="text-sm font-semibold text-gray-700 truncate">{item.exam}</span>
-                            </div>
-                        ))}
+                        {rankData.map((item, index) => {
+                            let rankStyle = "bg-blue-50 text-primary";
+                            if (item.rank === 1) rankStyle = "bg-yellow-100 text-yellow-700";
+                            if (item.rank === 2) rankStyle = "bg-gray-100 text-gray-700";
+
+                            return (
+                                <div key={index} className="flex items-center gap-3 bg-white border border-gray-200 rounded-md px-3 py-2 min-w-[160px] shadow-sm">
+                                    <span className={`text-xs font-bold px-2 py-0.5 rounded uppercase ${rankStyle}`}>RANK {item.rank}</span>
+                                    <span className="text-sm font-semibold text-gray-700 truncate">{item.exam}</span>
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             </div>
