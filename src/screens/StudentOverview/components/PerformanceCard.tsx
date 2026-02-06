@@ -85,13 +85,7 @@ export const PerformanceCard = (): JSX.Element => {
                     <h5 className="text-sm font-bold text-gray-700 mb-4 pl-2 border-l-4 border-primary">Exam Trend Analysis</h5>
                     <div className="flex-1">
                         <ResponsiveContainer width="100%" height="100%">
-                            <ComposedChart data={examTrendData} margin={{ top: 10, right: 0, left: -20, bottom: 0 }}>
-                                <defs>
-                                    <linearGradient id="colorStudentExam" x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="5%" stopColor="#004c6d" stopOpacity={0.1} />
-                                        <stop offset="95%" stopColor="#004c6d" stopOpacity={0} />
-                                    </linearGradient>
-                                </defs>
+                            <BarChart data={examTrendData} margin={{ top: 10, right: 0, left: -20, bottom: 0 }} barMarkGap={2}>
                                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f3f4f6" />
                                 <XAxis
                                     dataKey="exam"
@@ -109,6 +103,7 @@ export const PerformanceCard = (): JSX.Element => {
                                     ticks={[0, 25, 50, 75, 100]}
                                 />
                                 <Tooltip
+                                    cursor={{ fill: '#f9fafb' }}
                                     contentStyle={{
                                         borderRadius: '8px',
                                         border: 'none',
@@ -117,28 +112,21 @@ export const PerformanceCard = (): JSX.Element => {
                                     }}
                                 />
                                 <Legend iconType="circle" wrapperStyle={{ paddingTop: '20px', color: '#374151' }} />
-                                <Line
-                                    type="monotone"
-                                    dataKey="avg"
-                                    name="Class Avg"
-                                    stroke="#9CA3AF"
-                                    strokeWidth={2}
-                                    strokeDasharray="5 5"
-                                    dot={{ r: 4, fill: '#9CA3AF', strokeWidth: 0 }}
-                                    activeDot={{ r: 6 }}
-                                />
-                                <Area
-                                    type="monotone"
+                                <Bar
                                     dataKey="student"
                                     name="Student"
-                                    stroke="#004c6d"
-                                    strokeWidth={3}
-                                    fillOpacity={1}
-                                    fill="url(#colorStudentExam)"
-                                    dot={{ r: 4, fill: '#004c6d', strokeWidth: 0 }}
-                                    activeDot={{ r: 7 }}
+                                    fill="#004c6d"
+                                    radius={[4, 4, 0, 0]}
+                                    barSize={12}
                                 />
-                            </ComposedChart>
+                                <Bar
+                                    dataKey="avg"
+                                    name="Class Avg"
+                                    fill="#E5E7EB"
+                                    radius={[4, 4, 0, 0]}
+                                    barSize={12}
+                                />
+                            </BarChart>
                         </ResponsiveContainer>
                     </div>
                 </div>
