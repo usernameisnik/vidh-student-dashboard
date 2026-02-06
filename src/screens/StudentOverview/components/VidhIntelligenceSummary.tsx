@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { Sparkles } from 'lucide-react';
 
 export const VidhIntelligenceSummary = (): JSX.Element => {
     const score = 88;
@@ -43,9 +44,12 @@ export const VidhIntelligenceSummary = (): JSX.Element => {
                 </div>
             </div>
 
-            <p className="text-sm text-gray-500 leading-relaxed border-t border-gray-100 pt-3">
-                Sarah performs exceptionally well in STEM subjects with consistent improvement. Recommended to focus on language arts assignments.
-            </p>
+            <div className="mt-2 p-4 bg-blue-50/50 rounded-xl border border-blue-100 flex gap-3 items-start">
+                <Sparkles className="w-5 h-5 text-blue-600 mt-0.5 shrink-0 fill-blue-100" />
+                <p className="text-sm text-gray-700 leading-relaxed">
+                    Sarah performs exceptionally well in STEM subjects with consistent improvement. Recommended to focus on language arts assignments.
+                </p>
+            </div>
         </div>
     );
 };
