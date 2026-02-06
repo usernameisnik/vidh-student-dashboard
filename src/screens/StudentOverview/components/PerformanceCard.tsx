@@ -2,18 +2,18 @@ import { useState } from 'react';
 import { BarChart, Bar, ComposedChart, Area, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Legend } from 'recharts';
 
 const examTrendData = [
-    { exam: 'Slip test -2', student: 52, avg: 6 },
-    { exam: 'Term III', student: 29, avg: 2 },
-    { exam: 'Term II - Practi', student: 80, avg: 28 },
-    { exam: 'SA 2', student: 12, avg: 2 },
-    { exam: 'dsadd', student: 98, avg: 2 },
-    { exam: 'Test Exam', student: 92, avg: 2 },
-    { exam: 'WRP', student: 48, avg: 2 },
-    { exam: 'est', student: 58, avg: 2 },
-    { exam: 'asd', student: 18, avg: 2 },
-    { exam: 'dg', student: 31, avg: 2 },
-    { exam: 'Test 4', student: 4, avg: 2 },
-    { exam: 'asd', student: 28, avg: 2 },
+    { exam: 'Slip test -2', student: 52, avg: 55 },
+    { exam: 'Term III', student: 29, avg: 45 },
+    { exam: 'Term II - Practi', student: 80, avg: 72 },
+    { exam: 'SA 2', student: 12, avg: 40 },
+    { exam: 'dsadd', student: 98, avg: 85 },
+    { exam: 'Test Exam', student: 92, avg: 78 },
+    { exam: 'WRP', student: 48, avg: 60 },
+    { exam: 'est', student: 58, avg: 65 },
+    { exam: 'asd', student: 18, avg: 35 },
+    { exam: 'dg', student: 31, avg: 50 },
+    { exam: 'Test 4', student: 4, avg: 42 },
+    { exam: 'asd', student: 28, avg: 58 },
 ];
 
 const subjectData = [
