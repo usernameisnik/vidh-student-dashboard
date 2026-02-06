@@ -1,5 +1,5 @@
 
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Legend } from 'recharts';
+import { ComposedChart, Area, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Legend } from 'recharts';
 
 const homeworkData = [
     { month: 'Jul', student: 28, classAvg: 25 },
@@ -30,7 +30,13 @@ export const HomeworkCard = (): JSX.Element => {
             {/* Chart Area */}
             <div className="flex-1 w-full min-h-[280px]">
                 <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={homeworkData} barSize={40} barGap={0} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                    <ComposedChart data={homeworkData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                        <defs>
+                            <linearGradient id="colorStudent" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="5%" stopColor="#004c6d" stopOpacity={0.1} />
+                                <stop offset="95%" stopColor="#004c6d" stopOpacity={0} />
+                            </linearGradient>
+                        </defs>
                         <CartesianGrid strokeDasharray="3 3" vertical={true} stroke="#f3f4f6" />
                         <XAxis
                             dataKey="month"
@@ -47,7 +53,6 @@ export const HomeworkCard = (): JSX.Element => {
                             ticks={[0, 25, 50, 75, 100]}
                         />
                         <Tooltip
-                            cursor={{ fill: '#f9fafb' }}
                             contentStyle={{
                                 borderRadius: '8px',
                                 border: 'none',
@@ -56,23 +61,31 @@ export const HomeworkCard = (): JSX.Element => {
                             }}
                         />
                         <Legend
-                            iconType="square"
-                            iconSize={8}
+                            iconType="circle"
                             wrapperStyle={{ fontSize: '12px', paddingTop: '10px', color: '#374151' }}
                         />
-                        <Bar
+                        <Line
+                            type="monotone"
                             dataKey="classAvg"
                             name="Class average"
-                            fill="#E5E7EB"
-                            radius={[4, 4, 0, 0]}
+                            stroke="#9CA3AF"
+                            strokeWidth={2}
+                            strokeDasharray="5 5"
+                            dot={{ r: 4, fill: '#9CA3AF', strokeWidth: 0 }}
+                            activeDot={{ r: 6 }}
                         />
-                        <Bar
+                        <Area
+                            type="monotone"
                             dataKey="student"
                             name="Student"
-                            fill="#004c6d"
-                            radius={[4, 4, 0, 0]}
+                            stroke="#004c6d"
+                            strokeWidth={3}
+                            fillOpacity={1}
+                            fill="url(#colorStudent)"
+                            dot={{ r: 4, fill: '#004c6d', strokeWidth: 0 }}
+                            activeDot={{ r: 7 }}
                         />
-                    </BarChart>
+                    </ComposedChart>
                 </ResponsiveContainer>
             </div>
 
